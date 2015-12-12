@@ -24,6 +24,7 @@ int oposite_dir(int dir) {
 class RootPart {
   int xpos, ypos;
   Root r;
+  boolean selected = false;
   boolean[] connected={ false, false, false, false};
   RootPart[] next = new RootPart[4];
 
@@ -80,7 +81,20 @@ class RootPart {
     return root;
   }
 
+  void select() {
+    selected = true;
+  }
+
+  void unselect() {
+    selected = false;
+  }
+
   void display() {
+    if(selected) {
+      fill(0xFF,0x57,0x22);
+    } else {
+      fill(0xCD,0xDC,0x39);
+    }
     ellipse(xpos * SIZE + SIZE/2, ypos * SIZE + SIZE/2, SIZE/2, SIZE/2);
   }
 
@@ -101,7 +115,6 @@ class Root {
   }
 
   void display() {                 /* pensez à la couleur */
-    fill(0xCD,0xDC,0x39);
     for (RootPart part : parts) {
       /* part.debug(); */
       part.display();
