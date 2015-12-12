@@ -169,4 +169,34 @@ class Dirt extends Things {
   }
 }
 
+class Water extends Things {
+  Water(int x, int y) {
+    super(x, y);
+  }
+
+  boolean accept() {
+    for(int i=0; i<4; i++){     /* copied from root... berk */
+      if(connected[i]){
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void display() {
+    int image = 0;
+
+    fill(65,105,225);
+    for(int i=0; i<4; i++){     /* copied from root... berk */
+      if(connected[i]){
+        image += 1<<i;
+      }
+    }
+    rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
+    super.display();            /* for selection */
+    image(rootPixel[image],xpos * SIZE, ypos * SIZE);
+
+  }
+}
+
 HashMap<Integer, Things> board = new HashMap<Integer, Things>();
