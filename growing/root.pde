@@ -96,6 +96,7 @@ class Root {
   }
 
   void display() {                 /* pensez à la couleur */
+    fill(0xCD,0xDC,0x39);
     for (RootPart part : parts) {
       /* part.debug(); */
       part.display();
