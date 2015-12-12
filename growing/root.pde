@@ -33,7 +33,6 @@ class RootPart {
     ypos = y;
     r = a;
     for(int i=0; i < 4 ; i++){
-
       next[i] = this;
     }
   }
@@ -43,10 +42,10 @@ class RootPart {
     ypos = y;
     r = from.r;
     connected[dir] = true;
-    next[dir] = from;
     for(int i=0; i < 4 ; i++){
       next[i] = this;
     }
+    next[dir] = from;
   }
 
   RootPart move(int dir) {
