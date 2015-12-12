@@ -102,4 +102,12 @@ class Root {
       part.display();
     }
   }
+
+  void add(RootPart part){
+    parts.add(part);
+  }
+
+  RootPart seed() {
+    return parts.get(0);
+  }
 }
