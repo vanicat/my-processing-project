@@ -5,6 +5,7 @@ Root r;
 Cursor c;
 
 PImage[] rootPixel = new PImage[16];
+PImage[] tiles = new PImage[10*10];
 
 void setup() {
   size(1324,700);
@@ -29,9 +30,15 @@ void setup() {
   frameRate(10);
 
   // loading image
-  PImage tiles = loadImage("drawing.png");
+  PImage tilesFile = loadImage("drawing.png");
   for(int i = 0; i < 16; i++){
-    rootPixel[i] = tiles.get(i*SIZE,0,SIZE,SIZE);
+    rootPixel[i] = tilesFile.get(i*SIZE/image_root,0,SIZE/image_root,SIZE/image_root);
+  }
+  tilesFile = loadImage("map-tile.png");
+  for(int i = 0; i < 10; i++){
+    for(int j = 0; j < 1; j++){ /* do not forget to make it grow as needed */
+      tiles[i+10*j] = tilesFile.get(i*SIZE,j*SIZE,SIZE,SIZE);
+    }
   }
 }
 

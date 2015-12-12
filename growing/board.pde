@@ -1,3 +1,6 @@
+final int SIZE = 32;
+final int image_root = 2;
+
 final int marge = 2;
 
 int left_corner;
