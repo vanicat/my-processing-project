@@ -72,7 +72,6 @@ class RootPart extends Things{
     Things atdest = board.get(coordinate_hash(newx,newy));
 
     if(atdest != null){
-
       if( !atdest.accept()){
         return this;              /* can go there */
       } else {

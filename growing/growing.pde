@@ -10,6 +10,11 @@ void setup() {
   r = new Root(width/SIZE/2,height/SIZE/2);
   c = new Cursor(r,r.seed());
 
+  left_corner = 0;
+  up_corner = 0;
+  board_width = width/SIZE;
+  board_height = height/SIZE;
+
   /* // affiche toute les polices disponibles dans la console */
   /* printArray(PFont.list()); */
 
@@ -30,7 +35,12 @@ void setup() {
 
 void draw() {
   background(0xff,0xff,0xff);
+
+  pushMatrix();
+  translate(-left_corner * SIZE, -up_corner * SIZE);
   r.display();
+  popMatrix();
+
   if(keyPressed) {
     c.keyPressed();
   }
