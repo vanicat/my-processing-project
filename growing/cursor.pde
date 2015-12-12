@@ -5,10 +5,13 @@ class Cursor {
   Cursor(Root theroot, RootPart seed) {
     r = theroot;
     pos = seed;
+    pos.select();
   }
 
   void move(int dir) {
+    pos.unselect();
     pos = pos.move(dir);
+    pos.select();
   }
 
   void keyPressed() {
