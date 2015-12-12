@@ -2,9 +2,9 @@ int SIZE = 16;
 
 
 final int DIRUP    = 0;
-final int DIRLEFT  = 1;
+final int DIRRIGHT = 1;
 final int DIRDOWN  = 2;
-final int DIRRIGHT = 3;
+final int DIRLEFT  = 3;
 
 int oposite_dir(int dir) {
   switch(dir){
@@ -89,12 +89,19 @@ class RootPart {
   }
 
   void display() {
-    if(selected) {
+    int image = 0;
+    if(selected) {              /* how to display selected? */
       fill(0xFF,0x57,0x22);
     } else {
       fill(0xCD,0xDC,0x39);
+    };
+    for(int i=0; i<4; i++){
+      if(connected[i]){
+        image += 1<<i;
+      }
     }
-    ellipse(xpos * SIZE + SIZE/2, ypos * SIZE + SIZE/2, SIZE/2, SIZE/2);
+    println(image);
+    image(rootPixel[image],xpos * SIZE, ypos * SIZE);
   }
 
   void debug(){

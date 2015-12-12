@@ -29,7 +29,7 @@ void setup() {
 }
 
 void draw() {
-  background(0x79,0x55,0x48);
+  background(0xff,0xff,0xff);
   r.display();
   if(keyPressed) {
     c.keyPressed();
