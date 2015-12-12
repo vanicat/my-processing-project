@@ -23,12 +23,14 @@ int oposite_dir(int dir) {
 
 class RootPart {
   int xpos, ypos;
+  Root r;
   boolean[] connected={ false, false, false, false};
   RootPart[] next = new RootPart[4];
 
-  RootPart (int x, int y){
+  RootPart (int x, int y, Root a){
     xpos = x;
     ypos = y;
+    r = a;
     for(int i=0; i < 4 ; i++){
 
       next[i] = this;
@@ -38,6 +40,7 @@ class RootPart {
   RootPart (int x, int y, int dir, RootPart from){
     xpos = x;
     ypos = y;
+    r = from.r;
     connected[dir] = true;
     next[dir] = from;
     for(int i=0; i < 4 ; i++){
@@ -92,7 +95,7 @@ class Root {
   ArrayList<RootPart> parts = new ArrayList<RootPart>();
 
   Root (int x, int y) {
-    parts.add(new RootPart(x,y));
+    parts.add(new RootPart(x,y,this));
   }
 
   void display() {                 /* pensez à la couleur */
