@@ -1,6 +1,3 @@
-int SIZE = 16;
-
-
 final int DIRUP    = 0;
 final int DIRRIGHT = 1;
 final int DIRDOWN  = 2;
