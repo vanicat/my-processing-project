@@ -1,3 +1,5 @@
+import java.util.Map;
+
 PFont f;
 Root r;
 Cursor c;
@@ -38,7 +40,9 @@ void draw() {
 
   pushMatrix();
   translate(-left_corner * SIZE, -up_corner * SIZE);
-  r.display();
+  for (Map.Entry me : board.entrySet()) {
+    ((Things)me.getValue()).display();
+  }
   popMatrix();
 
   if(keyPressed) {
