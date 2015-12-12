@@ -59,6 +59,12 @@ class Things {
   }
 
 
+  void accepting(Things from, int dir) {
+    r = from.r;
+    connected[dir] = true;
+    next[dir] = from;
+  }
+
   Things move(int dir) {
     if(connected[dir]){
       return next[dir];
@@ -90,7 +96,10 @@ class Things {
       if( !atdest.accept()){
         return this;              /* can go there */
       } else {
-        return this;            /* should do something! */
+        atdest.accepting(this, oposite_dir(dir));
+        connected[dir] = true;
+        next[dir] = atdest;
+        return atdest;            /* should do something! */
       }
     } else {                    /* nothing there: creating new root */
       RootPart root = new RootPart(newx,newy,oposite_dir(dir),this);
