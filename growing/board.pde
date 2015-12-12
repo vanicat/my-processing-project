@@ -139,7 +139,6 @@ class Dirt extends Things {
   }
 
   void display() {
-    fill(resistance * 50);
     if(trying > 0) {
       stroke(0);
       trying--;
@@ -147,6 +146,7 @@ class Dirt extends Things {
       noStroke();
     }
     rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
+    image(tiles[resistance], xpos * SIZE, ypos * SIZE);
     noFill();
   }
 
