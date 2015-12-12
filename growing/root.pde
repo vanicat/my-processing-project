@@ -49,9 +49,28 @@ class RootPart {
     if(connected[dir]){
       throw new Exception("already added");
     }
+    int newx=xpos;
+    int newy=ypos;
+    switch(dir){
+    case DIRUP:
+      newy--;
+      break;
+    case DIRLEFT:
+      newx--;
+      break;
+    case DIRDOWN:
+      newy++;
+      break;
+    case DIRRIGHT:
+      newx++;
+      break;
+    default:
+      throw new Exception("no such direction");
+    }
+
+    root = new RootPart(newx,newy,oposite_dir(dir),this);
+    next[dir] = root;
     connected[dir]=true;
-    /* root = new RootPart(); */
-    root = new RootPart(xpos,ypos); /* à finir ! */
     return root;
   }
 
