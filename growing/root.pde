@@ -21,16 +21,14 @@ int oposite_dir(int dir) {
   return 0;
 }
 
-class RootPart {
-  int xpos, ypos;
+class RootPart extends Things{
   Root r;
   boolean selected = false;
   boolean[] connected={ false, false, false, false};
   RootPart[] next = new RootPart[4];
 
   RootPart (int x, int y, Root a){
-    xpos = x;
-    ypos = y;
+    super(x,y);
     r = a;
     for(int i=0; i < 4 ; i++){
       next[i] = this;
@@ -38,8 +36,7 @@ class RootPart {
   }
 
   RootPart (int x, int y, int dir, RootPart from){
-    xpos = x;
-    ypos = y;
+    super(x,y);
     r = from.r;
     connected[dir] = true;
     for(int i=0; i < 4 ; i++){
