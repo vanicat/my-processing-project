@@ -17,6 +17,6 @@ void setup() {
 }
 
 void draw() {
-  background(100,0,0);
+  background(0x79,0x55,0x48);
   r.display();
 }
