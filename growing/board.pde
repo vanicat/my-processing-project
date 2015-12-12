@@ -13,7 +13,7 @@ void maybe_scroll(int x, int y){
   }
   if(y - marge < up_corner) {
     up_corner--;
-  } else if(y+marge > up_corner + board_height) {
+  } else if(y + marge > up_corner + board_height) {
     up_corner++;
   }
 }
