@@ -29,6 +29,7 @@ class RootPart {
     xpos = x;
     ypos = y;
     for(int i=0; i < 4 ; i++){
+
       next[i] = this;
     }
   }
@@ -37,7 +38,7 @@ class RootPart {
     xpos = x;
     ypos = y;
     connected[dir] = true;
-    RootPart[dir] = from;
+    next[dir] = from;
     for(int i=0; i < 4 ; i++){
       next[i] = this;
     }
@@ -50,11 +51,12 @@ class RootPart {
     }
     connected[dir]=true;
     /* root = new RootPart(); */
-    root = new RootPart(xpos,ypos);
+    root = new RootPart(xpos,ypos); /* à finir ! */
     return root;
   }
 
   void display() {
+    ellipse(xpos * SIZE + SIZE/2, ypos * SIZE + SIZE/2, SIZE/2, SIZE/2);
   }
 }
 
