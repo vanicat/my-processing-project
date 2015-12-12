@@ -1,0 +1,7 @@
+* quelque idée:
+- [ ] deux bars d'énergie: eau et sucre
+- [ ] des sources d'eau nécessaires.
+- [ ] l'arbre à besoin d'eau et puise dans notre ressource d'eau. en échange il donne des sucres nécessaires à notre travail
+- [ ] succession nuit/jour
+- [ ] plus on est gros, plus on a besoin d'eau et de sucre en local pour vivre.
+- [ ] taille de l'arbre ? il grossis quand il y a des surplus, mais demande alors plus de truc.
