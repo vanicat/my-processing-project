@@ -36,11 +36,8 @@ class RootPart extends Things{
 
   void display() {
     int image = 0;
-    if(selected) {              /* how to display selected? */
-      rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
-    } else {
-      fill(0xCD,0xDC,0x39);
-    };
+    super.display();            /* for selction */
+
     for(int i=0; i<4; i++){
       if(connected[i]){
         image += 1<<i;
