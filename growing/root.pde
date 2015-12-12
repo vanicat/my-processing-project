@@ -99,7 +99,7 @@ class RootPart extends Things{
   void display() {
     int image = 0;
     if(selected) {              /* how to display selected? */
-      fill(0xFF,0x57,0x22);
+      rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     } else {
       fill(0xCD,0xDC,0x39);
     };
@@ -108,7 +108,6 @@ class RootPart extends Things{
         image += 1<<i;
       }
     }
-    println(image);
     image(rootPixel[image],xpos * SIZE, ypos * SIZE);
   }
 
