@@ -58,6 +58,14 @@ class RootPart {
   void display() {
     ellipse(xpos * SIZE + SIZE/2, ypos * SIZE + SIZE/2, SIZE/2, SIZE/2);
   }
+
+  void debug(){
+    print("x: ");
+    print(xpos);
+    print(" y: ");
+    print(ypos);
+    println(" thats it");
+  }
 }
 
 class Root {
@@ -69,6 +77,8 @@ class Root {
 
   void display() {                 /* pensez à la couleur */
     for (RootPart part : parts) {
+      println("nyu");
+      part.debug();
       part.display();
     }
   }
