@@ -22,7 +22,6 @@ int oposite_dir(int dir) {
 }
 
 class RootPart extends Things{
-
   RootPart (int x, int y, Root a){
     super(x,y);
     r = a;
@@ -34,7 +33,6 @@ class RootPart extends Things{
     connected[dir] = true;
     next[dir] = from;
   }
-
 
   void display() {
     int image = 0;
