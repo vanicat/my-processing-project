@@ -119,9 +119,8 @@ class Things {
 
   void display() {
     if(selected) {
-      rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
-    } else {
       fill(0xCD,0xDC,0x39);
+      rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     };
   }
 }
