@@ -64,7 +64,7 @@ class RootPart {
     print(xpos);
     print(" y: ");
     print(ypos);
-    println(" thats it");
+    println("");
   }
 }
 
@@ -77,8 +77,7 @@ class Root {
 
   void display() {                 /* pensez à la couleur */
     for (RootPart part : parts) {
-      println("nyu");
-      part.debug();
+      /* part.debug(); */
       part.display();
     }
   }
