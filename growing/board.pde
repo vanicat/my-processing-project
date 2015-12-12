@@ -128,4 +128,29 @@ class Things {
   }
 }
 
+class Dirt extends Things {
+  int resistance = 4;
+  boolean trying = false;
+
+  Dirt(int x, int y) {
+    super(x, y);
+  }
+
+  Dirt(int x, int y, int r) {
+    super(x, y);
+    resistance = r;
+  }
+
+  void display() {
+    fill(resistance*10,resistance*10,resistance*10);
+    if(trying) {
+      stroke(0);
+    } else {
+      noStroke();
+    }
+    rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
+    noFill();
+  }
+}
+
 HashMap<Integer, Things> board = new HashMap<Integer, Things>();
