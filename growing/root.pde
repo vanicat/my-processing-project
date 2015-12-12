@@ -75,6 +75,8 @@ class RootPart {
     root = new RootPart(newx,newy,oposite_dir(dir),this);
     next[dir] = root;
     connected[dir]=true;
+
+    r.add(root);
     return root;
   }
 
