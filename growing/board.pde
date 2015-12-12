@@ -59,10 +59,11 @@ class Things {
   }
 
 
-  void accepting(Things from, int dir) {
+  Things accepting(Things from, int dir) {
     r = from.r;
     connected[dir] = true;
     next[dir] = from;
+    return this;
   }
 
   Things move(int dir) {
@@ -91,23 +92,17 @@ class Things {
     }
 
     Things atdest = board.get(coordinate_hash(newx,newy));
+    if(atdest == null) {
+      atdest = new Dirt(newx, newy);
+    }
 
-    if(atdest != null){
-      if( !atdest.accept()){
-        return this;              /* can go there */
-      } else {
-        atdest.accepting(this, oposite_dir(dir));
-        connected[dir] = true;
-        next[dir] = atdest;
-        return atdest;            /* should do something! */
-      }
-    } else {                    /* nothing there: creating new root */
-      RootPart root = new RootPart(newx,newy,oposite_dir(dir),this);
-      next[dir] = root;
-      connected[dir]=true;
-
-      r.add(root);
-      return root;
+    if( !atdest.accept()){
+      return this;              /* can go there */
+    } else {
+      atdest = atdest.accepting(this, oposite_dir(dir));
+      connected[dir] = true;
+      next[dir] = atdest;
+      return atdest;            /* should do something! */
     }
   }
 
@@ -129,8 +124,8 @@ class Things {
 }
 
 class Dirt extends Things {
-  int resistance = 4;
-  boolean trying = false;
+  int resistance = 2;
+  int trying = 0;
 
   Dirt(int x, int y) {
     super(x, y);
@@ -142,14 +137,33 @@ class Dirt extends Things {
   }
 
   void display() {
-    fill(resistance*10,resistance*10,resistance*10);
-    if(trying) {
+    fill(resistance * 50);
+    if(trying > 0) {
       stroke(0);
+      trying--;
     } else {
       noStroke();
     }
     rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     noFill();
+  }
+
+  boolean accept() {
+    if(trying > 0 && resistance == 0) {
+      return true;
+    } else if(trying > 0) {
+      resistance--;
+    }
+    trying = 4;
+
+    return false;               /* Can we connect */
+  }
+
+  Things accepting(Things from, int dir) {
+    RootPart root = new RootPart(xpos, ypos, dir, from);
+
+    from.r.add(root);
+    return root;
   }
 }
 
