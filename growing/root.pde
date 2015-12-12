@@ -69,6 +69,17 @@ class RootPart extends Things{
       exit();
     }
 
+    Things atdest = board.get(coordinate_hash(newx,newy));
+
+    if(atdest != null){
+
+      if( !atdest.accept()){
+        return this;              /* can go there */
+      } else {
+        return this;            /* should do something! */
+      }
+    }
+
     root = new RootPart(newx,newy,oposite_dir(dir),this);
     next[dir] = root;
     connected[dir]=true;
