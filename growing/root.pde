@@ -6,7 +6,7 @@ final int DIRLEFT  = 1;
 final int DIRDOWN  = 2;
 final int DIRRIGHT = 3;
 
-int oposite_dir(int dir) throws Exception {
+int oposite_dir(int dir) {
   switch(dir){
   case DIRUP:
     return DIRDOWN;
@@ -17,7 +17,8 @@ int oposite_dir(int dir) throws Exception {
   case DIRRIGHT:
     return DIRLEFT;
   }
-  throw new Exception("no such direction");
+  exit();
+  return 0;
 }
 
 class RootPart {
@@ -44,10 +45,10 @@ class RootPart {
     }
   }
 
-  RootPart add(int dir) throws Exception {
+  RootPart move(int dir) {
     RootPart root;
     if(connected[dir]){
-      throw new Exception("already added");
+      return next[dir];
     }
     int newx=xpos;
     int newy=ypos;
@@ -65,7 +66,7 @@ class RootPart {
       newx++;
       break;
     default:
-      throw new Exception("no such direction");
+      exit();
     }
 
     root = new RootPart(newx,newy,oposite_dir(dir),this);
