@@ -11,9 +11,9 @@ class Cursor {
     pos = pos.move(dir);
   }
 
-  void keypressed() {
+  void keyPressed() {
     if(key == CODED) {
-      switch(key) {
+      switch(keyCode) {
       case UP:
         move(DIRUP);
         break;
