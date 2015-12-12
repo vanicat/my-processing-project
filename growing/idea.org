@@ -1,4 +1,5 @@
 * quelque idée:
+- [ ] résister quand on creuse.
 - [ ] deux bars d'énergie: eau et sucre
 - [ ] des sources d'eau nécessaires.
 - [ ] l'arbre à besoin d'eau et puise dans notre ressource d'eau. en échange il donne des sucres nécessaires à notre travail
