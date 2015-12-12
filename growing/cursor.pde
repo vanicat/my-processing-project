@@ -1,6 +1,6 @@
 class Cursor {
   Root r;
-  RootPart pos;
+  Things pos;
 
   Cursor(Root theroot, RootPart seed) {
     r = theroot;

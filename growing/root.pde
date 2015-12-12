@@ -22,78 +22,19 @@ int oposite_dir(int dir) {
 }
 
 class RootPart extends Things{
-  Root r;
-  boolean selected = false;
-  boolean[] connected={ false, false, false, false};
-  RootPart[] next = new RootPart[4];
 
   RootPart (int x, int y, Root a){
     super(x,y);
     r = a;
-    for(int i=0; i < 4 ; i++){
-      next[i] = this;
-    }
   }
 
-  RootPart (int x, int y, int dir, RootPart from){
+  RootPart (int x, int y, int dir, Things from){
     super(x,y);
     r = from.r;
     connected[dir] = true;
-    for(int i=0; i < 4 ; i++){
-      next[i] = this;
-    }
     next[dir] = from;
   }
 
-  RootPart move(int dir) {
-    RootPart root;
-    if(connected[dir]){
-      return next[dir];
-    }
-    int newx=xpos;
-    int newy=ypos;
-    switch(dir){
-    case DIRUP:
-      newy--;
-      break;
-    case DIRLEFT:
-      newx--;
-      break;
-    case DIRDOWN:
-      newy++;
-      break;
-    case DIRRIGHT:
-      newx++;
-      break;
-    default:
-      exit();
-    }
-
-    Things atdest = board.get(coordinate_hash(newx,newy));
-
-    if(atdest != null){
-      if( !atdest.accept()){
-        return this;              /* can go there */
-      } else {
-        return this;            /* should do something! */
-      }
-    }
-
-    root = new RootPart(newx,newy,oposite_dir(dir),this);
-    next[dir] = root;
-    connected[dir]=true;
-
-    r.add(root);
-    return root;
-  }
-
-  void select() {
-    selected = true;
-  }
-
-  void unselect() {
-    selected = false;
-  }
 
   void display() {
     int image = 0;

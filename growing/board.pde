@@ -38,15 +38,78 @@ int coordinate_hash(int x, int y) { /* from number therorie: no two number map t
 class Things {
   int xpos, ypos;
 
+  boolean selected = false;
+
+  Root r;
+  boolean[] connected={ false, false, false, false};
+  Things[] next = new Things[4];
+
   Things(int x, int y){
     xpos = x;
     ypos = y;
     board.put(coordinate_hash(x,y),this);
+
+    for(int i=0; i < 4 ; i++){
+      next[i] = this;
+    }
   }
 
   boolean accept() {
     return false;               /* Can we connect */
   }
+
+
+  Things move(int dir) {
+    if(connected[dir]){
+      return next[dir];
+    }
+
+    int newx=xpos;
+    int newy=ypos;
+
+    switch(dir){
+    case DIRUP:
+      newy--;
+      break;
+    case DIRLEFT:
+      newx--;
+      break;
+    case DIRDOWN:
+      newy++;
+      break;
+    case DIRRIGHT:
+      newx++;
+      break;
+    default:
+      exit();
+    }
+
+    Things atdest = board.get(coordinate_hash(newx,newy));
+
+    if(atdest != null){
+      if( !atdest.accept()){
+        return this;              /* can go there */
+      } else {
+        return this;            /* should do something! */
+      }
+    } else {                    /* nothing there: creating new root */
+      RootPart root = new RootPart(newx,newy,oposite_dir(dir),this);
+      next[dir] = root;
+      connected[dir]=true;
+
+      r.add(root);
+      return root;
+    }
+  }
+
+  void select() {
+    selected = true;
+  }
+
+  void unselect() {
+    selected = false;
+  }
+
 }
 
 HashMap<Integer, Things> board = new HashMap<Integer, Things>();
