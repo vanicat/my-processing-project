@@ -2,6 +2,8 @@ PFont f;
 Root r;
 Cursor c;
 
+PImage[] rootPixel = new PImage[16];
+
 void setup() {
   size(1324,700);
 
@@ -15,7 +17,15 @@ void setup() {
   f = createFont("Arial", width/8);
   textFont(f);
   textAlign(CENTER);
+
+  // changement du framerate
   frameRate(10);
+
+  // loading image
+  PImage tiles = loadImage("drawing.png");
+  for(int i = 0; i < 16; i++){
+    rootPixel[i] = tiles.get(i*SIZE,0,SIZE,SIZE);
+  }
 }
 
 void draw() {
