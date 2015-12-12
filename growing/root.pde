@@ -1,4 +1,4 @@
-int SIZE = 10;
+int SIZE = 30;
 
 
 final int DIRUP    = 0;
