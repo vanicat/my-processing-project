@@ -27,7 +27,7 @@ void setup() {
   textAlign(CENTER);
 
   // changement du framerate
-  frameRate(10);
+  frameRate(20);
 
   // loading image
   PImage tilesFile = loadImage("drawing.png");
