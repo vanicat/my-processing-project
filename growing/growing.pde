@@ -11,7 +11,7 @@ int board_height;
 void setup() {
   size(1324,700);
 
-  current = new Board();
+  current = new Board("macarte");
 
   r = new Root(width/SIZE/2,height/SIZE/2);
   c = new Cursor(r,r.seed());

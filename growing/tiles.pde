@@ -17,18 +17,14 @@ class Carte {
   JSONArray objects;
 
   Carte(String name) {
-    data = loadJSONObject(name);
-    name = data.getString("name");
+    data = loadJSONObject("data/" + name + ".json");
     height = data.getInt("height");
     width  = data.getInt("width");
-    for(int i = 0; i<2; i++) {
-      JSONObject tmp = data.getJSONArray("layers").getJSONObject(i);
-      if(tmp.getString("name") == "le plan") {
-        themap = tmp.getJSONArray("data");
-      } else {
-        objects = tmp.getJSONArray("objects");
-      }
-    }
+    JSONArray layers = data.getJSONArray("layers");
+    JSONObject tmp = layers.getJSONObject(0);
+    themap = tmp.getJSONArray("data");
+    tmp = layers.getJSONObject(1);
+    objects = tmp.getJSONArray("objects");
   }
 
   int get(int x, int y) {

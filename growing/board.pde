@@ -7,11 +7,13 @@ class Board {
   int up_corner;
 
   HashMap<Integer, Things> board;
+  Carte carte;
 
-  Board() {
+  Board(String name) {
     left_corner = 0;
     up_corner = 0;
     board = new HashMap<Integer, Things>();
+    carte = new Carte(name);
   }
 
   void maybe_scroll(int x, int y){
