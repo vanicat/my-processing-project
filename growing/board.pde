@@ -255,6 +255,9 @@ class Dirt extends Things {
       resistance--;
     }
     trying = 4;
+    if(! digging.isPlaying()) {
+      digging.play(0);
+    }
 
     return false;               /* Can we connect */
   }
@@ -284,6 +287,11 @@ class Water extends Things {
         return false;
       }
     }
+    if(! splach.isPlaying()) {
+      splach.play(0);
+    }
+
+
     return true;
   }
 

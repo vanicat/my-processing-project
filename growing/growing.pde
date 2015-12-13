@@ -21,9 +21,7 @@ void setup() {
 
   load_map("menu");
 
-  minim = new Minim(this);
-  player = minim.loadFile("data/remi_vanicat - Sound of nature.mp3", 2048);
-  player.loop();
+  sound_init();
 
   /* // affiche toute les polices disponibles dans la console */
   /* printArray(PFont.list()); */
