@@ -31,6 +31,6 @@ class Carte {
   }
 
   int get(int x, int y) {
-    return themap[(x+height*y)]-1;
+    return themap[(x+width*y)]-1;
   }
 }

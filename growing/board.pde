@@ -114,7 +114,13 @@ class Board {
   Things get(int x, int y) {
     Things t = board.get(coordinate_hash(x,y));
     if(t == null) {
-      int type = carte.get(x,y);
+      int type;
+      if( x < 0 || y < 0 || x >= carte.width || y >= carte.height) {
+        type = rockTiles;
+      } else {
+        type = carte.get(x,y);
+      }
+
       t = object_from_type(type, x, y);
     }
     return t;
