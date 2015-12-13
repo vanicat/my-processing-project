@@ -10008,6 +10008,6 @@
   </data>
  </layer>
  <objectgroup name="les objects">
-  <object name="start pos" gid="16" x="1760" y="289"/>
+  <object name="start pos" type="seed" gid="16" x="1760" y="288"/>
  </objectgroup>
 </map>

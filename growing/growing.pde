@@ -12,7 +12,7 @@ void setup() {
   board_width = width/SIZE;
   board_height = height/SIZE;
 
-  current = new Board("macarte");
+  current = new Board("menu");
   current.init_objects();
 
   /* // affiche toute les polices disponibles dans la console */
