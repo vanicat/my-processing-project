@@ -46,15 +46,10 @@ class Board {
   void init_objects() {
     for(int i = 0; i < carte.objects.size(); i++){
       JSONObject obj = carte.objects.getJSONObject(i);
+      int x = obj.getInt("x")/SIZE;
+      int y = obj.getInt("y")/SIZE;
 
-      if(obj.getInt("gid") == seedTiles+1) {
-        int x = obj.getInt("x")/SIZE;
-        int y = obj.getInt("y")/SIZE;
-        r = new Root(x,y);
-        c = new Cursor(r,r.seed());
-        left_corner = x - board_width/2;
-        up_corner = max(y - board_width/2,0);
-      }
+      Things t = object_from_type(obj.getInt("gid")-1,x,y);
     }
   }
 
@@ -113,17 +108,7 @@ class Board {
     Things t = board.get(coordinate_hash(x,y));
     if(t == null) {
       int type = carte.get(x,y);
-      switch(type) {
-      case(waterTiles):
-        t = new Water(x,y);
-        break;
-      case(rockTiles):
-        t = new Rock(x,y);
-        break;
-      default:
-        t = new Dirt(x, y);
-        break;
-      }
+      t = object_from_type(type, x, y);
     }
     return t;
   }
