@@ -12,7 +12,12 @@ class Cursor {
     pos.unselect();
     pos = pos.move(dir);
     pos.select();
-    current.maybe_scroll(pos.xpos,pos.ypos);
+    int x = pos.xpos; int y = pos.ypos;
+    current.maybe_scroll(x,y);
+    current.get(x+1,y);
+    current.get(x-1,y);
+    current.get(x,y+1);
+    current.get(x,y-1);
   }
 
   void keyPressed() {
