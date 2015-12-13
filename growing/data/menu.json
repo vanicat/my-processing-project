@@ -349,7 +349,7 @@
                 {
                  "gid":7,
                  "height":0,
-                 "name":"",
+                 "name":"Goal",
                  "properties":
                     {
                      "destination":"macarte"
@@ -359,7 +359,7 @@
                  "visible":true,
                  "width":0,
                  "x":128,
-                 "y":704
+                 "y":768
                 }, 
                 {
                  "gid":10,
@@ -3161,7 +3161,8 @@
  "orientation":"orthogonal",
  "properties":
     {
-
+     "energy":"200",
+     "water":"0"
     },
  "renderorder":"right-down",
  "tileheight":32,

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="50" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="energy" value="200"/>
+  <property name="water" value="0"/>
+ </properties>
  <tileset firstgid="1" name="map-tile" tilewidth="32" tileheight="32">
   <image source="map-tile.png" width="320" height="320"/>
  </tileset>
@@ -2030,7 +2034,7 @@
   <object gid="6" x="224" y="192"/>
   <object gid="6" x="256" y="224"/>
   <object gid="6" x="352" y="192"/>
-  <object gid="7" x="128" y="704">
+  <object name="Goal" gid="7" x="128" y="768">
    <properties>
     <property name="destination" value="macarte"/>
    </properties>
