@@ -2,41 +2,76 @@ final int SIZE = 32;
 
 final int marge = 2;
 
-int left_corner;
-int up_corner;
-int board_width;
-int board_height;
+class Board {
+  int left_corner;
+  int up_corner;
 
-void maybe_scroll(int x, int y){
-  if(x - marge < left_corner) {
-    left_corner--;
-  } else if(x+marge > left_corner + board_width) {
-    left_corner++;
-  }
-  if(y - marge < up_corner) {
-    up_corner--;
-  } else if(y + marge > up_corner + board_height) {
-    up_corner++;
-  }
-  if(up_corner < 0) {
+  HashMap<Integer, Things> board;
+
+  Board() {
+    left_corner = 0;
     up_corner = 0;
+    board = new HashMap<Integer, Things>();
   }
-}
 
-int coordinate_hash(int x, int y) { /* from number therorie: no two number map to the same number */
-  int a, b, n;
-  if(x<0){
-    a = -2*x;
-  } else {
-    a = 2 * x + 1;
+  void maybe_scroll(int x, int y){
+    if(x - marge < left_corner) {
+      left_corner--;
+    } else if(x+marge > left_corner + board_width) {
+      left_corner++;
+    }
+    if(y - marge < up_corner) {
+      up_corner--;
+    } else if(y + marge > up_corner + board_height) {
+      up_corner++;
+    }
+    if(up_corner < 0) {
+      up_corner = 0;
+    }
   }
-  if(y<0){
-    b = -2*y;
-  } else {
-    b = 2 * y + 1;
+
+  int coordinate_hash(int x, int y) { /* from number therorie: no two number map to the same number */
+    int a, b, n;
+    if(x<0){
+      a = -2*x;
+    } else {
+      a = 2 * x + 1;
+    }
+    if(y<0){
+      b = -2*y;
+    } else {
+      b = 2 * y + 1;
+    }
+    n = a + b;
+    return n*(n+1)/2+a;
   }
-  n = a + b;
-  return n*(n+1)/2+a;
+
+  void display() {
+    background(0xff,0xff,0xff);
+
+    pushMatrix();
+    translate(-left_corner * SIZE, -up_corner * SIZE);
+    for (Map.Entry me : board.entrySet()) {
+      ((Things)me.getValue()).display();
+    }
+    popMatrix();
+
+    if(keyPressed) {
+      c.keyPressed();
+    }
+  }
+
+  void put(int x, int y, Things t) {
+    board.put(coordinate_hash(x,y),t);
+  }
+
+  Things get(int x, int y) {
+    Things t = board.get(coordinate_hash(x,y));
+    if(t == null) {
+      t = new Dirt(x, y);
+    }
+    return t;
+  }
 }
 
 
@@ -52,7 +87,7 @@ class Things {
   Things(int x, int y){
     xpos = x;
     ypos = y;
-    board.put(coordinate_hash(x,y),this);
+    current.put(x,y,this);
 
     for(int i=0; i < 4 ; i++){
       next[i] = this;
@@ -96,10 +131,7 @@ class Things {
       exit();
     }
 
-    Things atdest = board.get(coordinate_hash(newx,newy));
-    if(atdest == null) {
-      atdest = new Dirt(newx, newy);
-    }
+    Things atdest = current.get(newx,newy);
 
     if( !atdest.accept()){
       return this;              /* can go there */
@@ -211,5 +243,3 @@ class Water extends Things {
 
   }
 }
-
-HashMap<Integer, Things> board = new HashMap<Integer, Things>();
