@@ -1,4 +1,5 @@
 import java.util.Map;
+import ddf.minim.*;
 
 PFont f;
 Board current;
@@ -19,6 +20,11 @@ void setup() {
   board_height = height/SIZE;
 
   load_map("menu");
+
+  minim = new Minim(this);
+  player = minim.loadFile("data/remi_vanicat - Sound of nature.mp3", 2048);
+  player.loop();
+
   /* // affiche toute les polices disponibles dans la console */
   /* printArray(PFont.list()); */
 
