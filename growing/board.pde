@@ -19,6 +19,30 @@ class Board {
     carte = new Carte(name);
   }
 
+  Things object_from_type(int type, int x, int y) {
+    Things t;
+    switch(type) {
+    case(waterTiles):
+      t = new Water(x,y);
+      break;
+    case(rockTiles):
+      t = new Rock(x,y);
+      break;
+    case(seedTiles):
+      r = new Root(x,y);
+      t = r.seed();
+      c = new Cursor(r,t);
+      left_corner = max(x - board_width/2,0);
+      up_corner = max(y - board_width/2,0);
+      break;
+    default:
+      t = new Dirt(x, y);
+      break;
+    }
+
+    return t;
+  }
+
   void init_objects() {
     for(int i = 0; i < carte.objects.size(); i++){
       JSONObject obj = carte.objects.getJSONObject(i);
