@@ -152,10 +152,20 @@ class Things {
   }
 
   void display() {
+  }
+
+  void display_connected() {
     if(selected) {
       fill(0xCD,0xDC,0x39);
       rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     };
+    image(tiles[rootTiles],xpos * SIZE, ypos * SIZE);
+    for(int i=0; i<4; i++){
+      if(connected[i]){
+        image(tiles[rootTiles+1+i],xpos * SIZE, ypos * SIZE);
+      }
+    }
+
   }
 }
 
@@ -231,15 +241,8 @@ class Water extends Things {
   }
 
   void display() {
-    fill(65,105,225);
-    rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
-    super.display();            /* for selection */
+    image(tiles[waterTiles],xpos * SIZE, ypos * SIZE);
 
-    for(int i=0; i<4; i++){     /* copied from root... berk */
-      if(connected[i]){
-        image(tiles[31+i],xpos * SIZE, ypos * SIZE);
-      }
-    }
-
+    super.display_connected();
   }
 }
