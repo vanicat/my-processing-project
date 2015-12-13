@@ -131,6 +131,9 @@ class Dirt extends Things {
 
   Dirt(int x, int y) {
     super(x, y);
+    if(y==0){
+      resistance = 1;
+    };
   }
 
   Dirt(int x, int y, int r) {
@@ -146,7 +149,11 @@ class Dirt extends Things {
       noStroke();
     }
     rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
-    image(tiles[resistance], xpos * SIZE, ypos * SIZE);
+    if(ypos == 0) {
+      image(tiles[groundTiles], xpos * SIZE, ypos * SIZE);
+    } else {
+      image(tiles[resistance], xpos * SIZE, ypos * SIZE);
+    }
     noFill();
   }
 
@@ -162,10 +169,16 @@ class Dirt extends Things {
   }
 
   Things accepting(Things from, int dir) {
-    RootPart root = new RootPart(xpos, ypos, dir, from);
+    if(ypos == 0){
+      Trunk tr = new Trunk(xpos, ypos, dir, from);
+      from.r.add(tr);
+      return tr;
+    } else {
+      RootPart root = new RootPart(xpos, ypos, dir, from);
 
-    from.r.add(root);
-    return root;
+      from.r.add(root);
+      return root;
+    }
   }
 }
 

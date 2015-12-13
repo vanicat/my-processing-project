@@ -2,7 +2,7 @@ class Cursor {
   Root r;
   Things pos;
 
-  Cursor(Root theroot, RootPart seed) {
+  Cursor(Root theroot, Things seed) {
     r = theroot;
     pos = seed;
     pos.select();
