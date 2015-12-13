@@ -9,11 +9,29 @@ class Board {
   HashMap<Integer, Things> board;
   Carte carte;
 
+  Root r;
+  Cursor c;
+
   Board(String name) {
     left_corner = 0;
     up_corner = 0;
     board = new HashMap<Integer, Things>();
     carte = new Carte(name);
+  }
+
+  void init_objects() {
+    for(int i = 0; i < carte.objects.size(); i++){
+      JSONObject obj = carte.objects.getJSONObject(i);
+
+      if(obj.getInt("gid") == seedTiles+1) {
+        int x = obj.getInt("x")/SIZE;
+        int y = obj.getInt("y")/SIZE;
+        r = new Root(x,y);
+        c = new Cursor(r,r.seed());
+        left_corner = x - board_width/2;
+        up_corner = max(y - board_width/2,0);
+      }
+    }
   }
 
   void maybe_scroll(int x, int y){
