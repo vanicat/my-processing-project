@@ -19,6 +19,10 @@ void maybe_scroll(int x, int y){
   } else if(y + marge > up_corner + board_height) {
     up_corner++;
   }
+  if(up_corner < 0) {
+    up_corner = 0;
+  }
+
 }
 
 int coordinate_hash(int x, int y) { /* from number therorie: no two number map to the same number */
