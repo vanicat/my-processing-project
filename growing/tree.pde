@@ -66,12 +66,13 @@ class RootPart extends Things{
     int image = 0;
     super.display();            /* for selction */
 
+    image(tiles[easyDirtTiles],xpos * SIZE, ypos * SIZE);
+    image(tiles[rootTiles],xpos * SIZE, ypos * SIZE);
     for(int i=0; i<4; i++){
       if(connected[i]){
-        image += 1<<i;
+        image(tiles[rootTiles+1+i],xpos * SIZE, ypos * SIZE);
       }
     }
-    image(rootPixel[image],xpos * SIZE, ypos * SIZE);
   }
 
   void debug(){

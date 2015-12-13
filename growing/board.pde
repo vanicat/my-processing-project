@@ -201,17 +201,15 @@ class Water extends Things {
   }
 
   void display() {
-    int image = 0;
-
     fill(65,105,225);
-    for(int i=0; i<4; i++){     /* copied from root... berk */
-      if(connected[i]){
-        image += 1<<i;
-      }
-    }
     rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     super.display();            /* for selection */
-    image(rootPixel[image],xpos * SIZE, ypos * SIZE);
+
+    for(int i=0; i<4; i++){     /* copied from root... berk */
+      if(connected[i]){
+        image(tiles[31+i],xpos * SIZE, ypos * SIZE);
+      }
+    }
 
   }
 }
