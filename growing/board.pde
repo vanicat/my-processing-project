@@ -207,12 +207,14 @@ class Things {
   void display() {
   }
 
-  void display_connected() {
+  void display_connected(boolean displayEmpty) {
     if(selected) {
       fill(0xCD,0xDC,0x39);
       rect(xpos * SIZE, ypos * SIZE,SIZE,SIZE,SIZE/5);
     };
-    image(tiles[rootTiles],xpos * SIZE, ypos * SIZE);
+    if(displayEmpty) {
+      image(tiles[rootTiles],xpos * SIZE, ypos * SIZE);
+    }
     for(int i=0; i<4; i++){
       if(connected[i]){
         image(tiles[rootTiles+1+i],xpos * SIZE, ypos * SIZE);
@@ -297,14 +299,13 @@ class Water extends Things {
       splach.play(0);
     }
 
-
     return true;
   }
 
   void display() {
     image(tiles[waterTiles],xpos * SIZE, ypos * SIZE);
 
-    super.display_connected();
+    super.display_connected(false);
   }
 }
 

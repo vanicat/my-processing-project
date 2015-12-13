@@ -66,7 +66,7 @@ class RootPart extends Things{
     int image = 0;
 
     image(tiles[easyDirtTiles],xpos * SIZE, ypos * SIZE);
-    super.display_connected();
+    super.display_connected(true);
   }
 
   void debug(){
