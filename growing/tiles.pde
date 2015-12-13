@@ -40,7 +40,6 @@ class Carte {
   }
 
   int get(int x, int y) {
-    println("x: ",x,"y: ",y);
     return themap[(x+width*y)]-1;
   }
 }
