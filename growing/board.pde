@@ -1,5 +1,4 @@
 final int SIZE = 32;
-final int image_root = 2;
 
 final int marge = 2;
 
@@ -22,7 +21,6 @@ void maybe_scroll(int x, int y){
   if(up_corner < 0) {
     up_corner = 0;
   }
-
 }
 
 int coordinate_hash(int x, int y) { /* from number therorie: no two number map to the same number */
