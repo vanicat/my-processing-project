@@ -8,6 +8,7 @@ final int groundTiles = 10;
 final int easyDirtTiles = 0;
 final int dirtTiles = 4;
 final int rockTiles = 5;
+final int warpTiles = 6;
 
 class Carte {
   int height;

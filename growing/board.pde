@@ -20,6 +20,10 @@ class Board {
   }
 
   Things object_from_type(int type, int x, int y) {
+    return object_from_type(type, x, y,null);
+  }
+
+  Things object_from_type(int type, int x, int y, JSONObject parameter) {
     Things t;
     switch(type) {
     case(waterTiles):
@@ -27,6 +31,9 @@ class Board {
       break;
     case(rockTiles):
       t = new Rock(x,y);
+      break;
+    case(warpTiles):
+      t = new Warp(x,y,parameter.getString("destination"));
       break;
     case(seedTiles):
       r = new Root(x,y);
@@ -49,7 +56,7 @@ class Board {
       int x = obj.getInt("x")/SIZE;
       int y = obj.getInt("y")/SIZE;
 
-      Things t = object_from_type(obj.getInt("gid")-1,x,y);
+      Things t = object_from_type(obj.getInt("gid")-1,x,y,obj.getJSONObject("properties"));
     }
   }
 
@@ -298,5 +305,22 @@ class Rock extends Things {
 
   void display() {
     image(tiles[rockTiles],xpos * SIZE, ypos * SIZE);
+  }
+}
+
+class Warp extends Things {
+  String destination;
+  Warp(int x, int y, String dest) {
+    super(x, y);
+    destination = dest;
+  }
+
+  boolean accept() {
+    load_map(destination);
+    return true;
+  }
+
+  void display() {
+    image(tiles[warpTiles],xpos * SIZE, ypos * SIZE);
   }
 }

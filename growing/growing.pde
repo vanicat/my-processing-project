@@ -6,15 +6,19 @@ Board current;
 int board_width;
 int board_height;
 
+void load_map(String name) {
+  current = new Board(name);
+  current.init_objects();
+
+}
+
 void setup() {
   size(1324,700);
 
   board_width = width/SIZE;
   board_height = height/SIZE;
 
-  current = new Board("menu");
-  current.init_objects();
-
+  load_map("menu");
   /* // affiche toute les polices disponibles dans la console */
   /* printArray(PFont.list()); */
 
