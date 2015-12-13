@@ -88,7 +88,18 @@ class Board {
   Things get(int x, int y) {
     Things t = board.get(coordinate_hash(x,y));
     if(t == null) {
-      t = new Dirt(x, y);
+      int type = carte.get(x,y);
+      switch(type) {
+      case(waterTiles):
+        t = new Water(x,y);
+        break;
+      case(rockTiles):
+        t = new Rock(x,y);
+        break;
+      default:
+        t = new Dirt(x, y);
+        break;
+      }
     }
     return t;
   }
@@ -264,5 +275,19 @@ class Water extends Things {
     image(tiles[waterTiles],xpos * SIZE, ypos * SIZE);
 
     super.display_connected();
+  }
+}
+
+class Rock extends Things {
+  Rock(int x, int y) {
+    super(x, y);
+  }
+
+  boolean accept() {
+    return false;
+  }
+
+  void display() {
+    image(tiles[rockTiles],xpos * SIZE, ypos * SIZE);
   }
 }

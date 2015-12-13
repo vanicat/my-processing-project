@@ -1,15 +1,15 @@
 PImage[] tiles = new PImage[10*10];
 
 final int rootTiles = 15;
+final int seedTiles = 15;
 final int waterTiles = 9;
 final int trunkTiles = 11;
 final int groundTiles = 10;
 final int easyDirtTiles = 0;
-final int DirtTiles = 3;
-final int rockTiles = 4;
+final int dirtTiles = 4;
+final int rockTiles = 5;
 
 class Carte {
-  JSONObject data;
   int height;
   int width;
   String name;
@@ -17,6 +17,8 @@ class Carte {
   JSONArray objects;
 
   Carte(String name) {
+    JSONObject data;
+
     data = loadJSONObject("data/" + name + ".json");
     height = data.getInt("height");
     width  = data.getInt("width");
@@ -28,6 +30,6 @@ class Carte {
   }
 
   int get(int x, int y) {
-    return themap[(x+height*y)];
+    return themap[(x+height*y)]-1;
   }
 }
