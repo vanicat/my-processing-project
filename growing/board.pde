@@ -1,6 +1,6 @@
 final int SIZE = 32;
-
-final int marge = 2;
+final int marge = 5;
+final int osd = 3;
 
 class Board {
   int left_corner;
@@ -10,7 +10,7 @@ class Board {
   Carte carte;
 
   Root r;
-  Cursor c;
+  Player player;
 
   Board(String name) {
     left_corner = 0;
@@ -38,7 +38,7 @@ class Board {
     case(seedTiles):
       r = new Root(x,y);
       t = r.seed();
-      c = new Cursor(r,t);
+      player = new Player(r,t,carte.energy);
       left_corner = max(x - board_width/2,0);
       up_corner = max(y - board_width/2,0);
       break;
@@ -63,7 +63,7 @@ class Board {
   void maybe_scroll(int x, int y){
     if(x - marge < left_corner) {
       left_corner--;
-    } else if(x+marge > left_corner + board_width) {
+    } else if(x+marge+osd > left_corner + board_width) {
       left_corner++;
     }
     if(y - marge < up_corner) {
@@ -102,8 +102,10 @@ class Board {
     }
     popMatrix();
 
+    player.display();
+
     if(keyPressed) {
-      c.keyPressed();
+      player.keyPressed();
     }
   }
 
@@ -274,10 +276,12 @@ class Dirt extends Things {
     if(ypos == 0){
       Trunk tr = new Trunk(xpos, ypos, dir, from);
       from.r.add(tr);
+      current.player.addTrunk();
       return tr;
     } else {
       RootPart root = new RootPart(xpos, ypos, dir, from);
 
+      current.player.addRoot();
       from.r.add(root);
       return root;
     }
@@ -298,6 +302,7 @@ class Water extends Things {
     if(! splach.isPlaying()) {
       splach.play(0);
     }
+    current.player.addWater();
 
     return true;
   }

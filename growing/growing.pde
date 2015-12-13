@@ -27,9 +27,9 @@ void setup() {
   /* printArray(PFont.list()); */
 
   // chargement de la police Arial
-  // f = createFont("Arial", width/8);
-  // textFont(f);
-  // textAlign(CENTER);
+  f = createFont("Arial", width/10);
+  textFont(f);
+  textAlign(CENTER,CENTER);
 
   // changement du framerate
   frameRate(20);
@@ -41,8 +41,13 @@ void setup() {
       tiles[i+10*j] = tilesFile.get(i*SIZE,j*SIZE,SIZE,SIZE);
     }
   }
+  againSetup();
 }
 
 void draw() {
-  current.display();
+  if(dead) {
+    againDisplay();
+  } else {
+    current.display();
+  }
 }

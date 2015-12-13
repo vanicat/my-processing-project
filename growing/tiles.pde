@@ -13,24 +13,34 @@ final int warpTiles = 6;
 class Carte {
   int height;
   int width;
+  int energy;
   String name;
   int[] themap;
   JSONArray objects;
 
-  Carte(String name) {
+  Carte(String theName) {
     JSONObject data;
+
+    name = theName;
 
     data = loadJSONObject("data/" + name + ".json");
     height = data.getInt("height");
     width  = data.getInt("width");
     JSONArray layers = data.getJSONArray("layers");
-    JSONObject tmp = layers.getJSONObject(0);
+    JSONObject tmp;
+
+    tmp = layers.getJSONObject(0);
     themap = tmp.getJSONArray("data").getIntArray();
+
     tmp = layers.getJSONObject(1);
     objects = tmp.getJSONArray("objects");
+
+    tmp = data.getJSONObject("properties");
+    energy = tmp.getInt("energy");
   }
 
   int get(int x, int y) {
+    println("x: ",x,"y: ",y);
     return themap[(x+width*y)]-1;
   }
 }
