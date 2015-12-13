@@ -13,7 +13,7 @@ class Carte {
   int height;
   int width;
   String name;
-  JSONArray themap;
+  int[] themap;
   JSONArray objects;
 
   Carte(String name) {
@@ -22,14 +22,12 @@ class Carte {
     width  = data.getInt("width");
     JSONArray layers = data.getJSONArray("layers");
     JSONObject tmp = layers.getJSONObject(0);
-    themap = tmp.getJSONArray("data");
+    themap = tmp.getJSONArray("data").getIntArray();
     tmp = layers.getJSONObject(1);
     objects = tmp.getJSONArray("objects");
   }
 
   int get(int x, int y) {
-    return themap.getInt(x+height*y);
+    return themap[(x+height*y)];
   }
-
-
 }
