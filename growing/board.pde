@@ -227,7 +227,7 @@ class Things {
 }
 
 class Dirt extends Things {
-  int resistance = 4;
+  int resistance = 2;
   int trying = 0;
 
   Dirt(int x, int y) {

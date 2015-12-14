@@ -33,16 +33,22 @@ class Player {
     root++;
   }
 
+  boolean moving = true;
+
   void move(int dir) {
-    pos.unselect();
-    pos = pos.move(dir);
-    pos.select();
-    int x = pos.xpos; int y = pos.ypos;
-    current.maybe_scroll(x,y);
-    current.get(x+1,y);
-    current.get(x-1,y);
-    current.get(x,y+1);
-    current.get(x,y-1);
+    if(moving) {
+      pos.unselect();
+      pos = pos.move(dir);
+      pos.select();
+      int x = pos.xpos; int y = pos.ypos;
+      current.maybe_scroll(x,y);
+      current.get(x+1,y);
+      current.get(x-1,y);
+      current.get(x,y+1);
+      current.get(x,y-1);
+    } else {
+      moving = false;
+    }
   }
 
   void keyPressed() {
@@ -118,5 +124,11 @@ class Player {
     if(energy < 0) {
       dead = true;
     }
+
+    fill(0xFD,0xB8,0x13);
+    drawBar((int)trunk*10,trunk*10);
+
+    fill(0x13,0xB8,0xFD);
+    drawBar((int)trunk*10,water);
   }
 }
